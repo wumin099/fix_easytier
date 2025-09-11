@@ -7,9 +7,10 @@
 
 1. 下载并解压仓库：
 ```bash
-wget https://github.com/<用户名>/fix-easytier/archive/refs/heads/main.zip
+wget https://github.com/wumin099/fix_easytier/archive/refs/heads/main.zip
 unzip main.zip
-cd fix-easytier-main
+cd fix_easytier-main
+bash install.sh
 ```
 
 2. 执行安装：
