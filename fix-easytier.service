@@ -1,0 +1,8 @@
+[Unit]
+Description=Fix EasyTier IP Forwarding and NAT rules
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/fix_easytier.sh
+RemainAfterExit=yes

@@ -1,0 +1,10 @@
+[Unit]
+Description=Run fix-easytier.service every 5 minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+Unit=fix-easytier.service
+
+[Install]
+WantedBy=timers.target
