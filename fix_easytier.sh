@@ -1,12 +1,10 @@
 #!/bin/bash
 LOG_FILE="/var/log/fix_easytier.log"
 
-# 日志轮转：最多保留5份，每份最大5MB
-if [ -f "$LOG_FILE" ] && [ $(stat -c%s "$LOG_FILE") -ge $((5*1024*1024)) ]; then
-    for i in 4 3 2 1; do
-        if [ -f "$LOG_FILE.$i" ]; then mv "$LOG_FILE.$i" "$LOG_FILE.$((i+1))"; fi
-    done
+# 日志轮转（>5MB 就重命名为 .1）
+if [ -f "$LOG_FILE" ] && [ $(stat -c%s "$LOG_FILE") -gt 5242880 ]; then
     mv "$LOG_FILE" "$LOG_FILE.1"
+    echo "[$(date '+%F %T')] 日志过大，已轮转" > "$LOG_FILE"
 fi
 
 exec >> "$LOG_FILE" 2>&1

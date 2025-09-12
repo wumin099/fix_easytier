@@ -1,6 +1,12 @@
-# fix_easytier
+# Fix EasyTier
 
-自动修复 EasyTier 节点的 IP 转发和 NAT 规则，确保网络正常互通。
+用于修复 EasyTier 转发与 NAT 规则的自动化脚本。
+
+## 功能
+- 自动启用 `ip_forward`
+- 确保 `FORWARD` 链为 `ACCEPT`
+- 确保 NAT `MASQUERADE` 规则存在
+- 支持日志轮转（超过 5MB 自动切分）
 
 ## 安装
 
@@ -10,31 +16,32 @@ cd fix_easytier
 bash install.sh
 ```
 
-## 日志查看
+## 验证脚本执行结果
 
-脚本每 **5 分钟**由 systemd 定时器自动执行一次，执行日志会追加到：
-
+查看 systemd 状态：
+```bash
+systemctl status fix-easytier.service
 ```
-/var/log/fix_easytier.log
+
+手动执行一次修复：
+```bash
+bash /usr/local/bin/fix_easytier.sh
 ```
 
-可以用以下命令查看最新日志：
+查看日志：
+```bash
+cat /var/log/fix_easytier.log
+```
+
+## 卸载
 
 ```bash
-tail -f /var/log/fix_easytier.log
-```
-
-日志会自动轮转，最多保留最近 5 个日志文件，每个日志最大 5MB。
-
-## 卸载脚本
-
-```bash
-systemctl stop fix-easytier.timer
-systemctl stop fix-easytier.service
-systemctl disable fix-easytier.timer
-systemctl disable fix-easytier.service
-rm -f /usr/local/bin/fix_easytier.sh
+systemctl disable --now fix-easytier.timer
 rm -f /etc/systemd/system/fix-easytier.service
 rm -f /etc/systemd/system/fix-easytier.timer
-rm -f /var/log/fix_easytier.log
+rm -f /usr/local/bin/fix_easytier.sh
+systemctl daemon-reload
 ```
+
+## 定时任务
+脚本默认每 **5 分钟** 执行一次，确保网络规则持续有效。

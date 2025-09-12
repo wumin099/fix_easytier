@@ -1,6 +1,7 @@
 [Unit]
 Description=Fix EasyTier IP Forwarding and NAT rules
-After=network.target
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
