@@ -1,6 +1,14 @@
 #!/bin/bash
 LOG_FILE="/var/log/fix_easytier.log"
 
+# 日志轮转：最多保留5份，每份最大5MB
+if [ -f "$LOG_FILE" ] && [ $(stat -c%s "$LOG_FILE") -ge $((5*1024*1024)) ]; then
+    for i in 4 3 2 1; do
+        if [ -f "$LOG_FILE.$i" ]; then mv "$LOG_FILE.$i" "$LOG_FILE.$((i+1))"; fi
+    done
+    mv "$LOG_FILE" "$LOG_FILE.1"
+fi
+
 exec >> "$LOG_FILE" 2>&1
 
 echo "==== $(date '+%F %T') EasyTier 自动修复开始 ===="
