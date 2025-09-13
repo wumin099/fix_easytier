@@ -33,6 +33,3 @@ sudo systemctl disable --now fix-easytier.timer
 sudo rm -f /usr/local/bin/fix_easytier.sh /etc/systemd/system/fix-easytier.* /var/log/fix_easytier.log*
 sudo systemctl daemon-reload
 ```
-
-## License
-MIT
