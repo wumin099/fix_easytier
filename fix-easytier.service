@@ -1,8 +1,18 @@
 [Unit]
 Description=Fix EasyTier IP Forwarding and NAT rules
 After=network.target
+Wants=network.target
 
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/fix_easytier.sh
-RemainAfterExit=yes
+User=root
+Restart=no
+
+# 日志配置
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=fix-easytier
+
+[Install]
+WantedBy=multi-user.target
