@@ -15,7 +15,7 @@ markdown
 ## 📦 安装
 
 ```bash
-git clone https://github.com/yourusername/fix_easytier.git
+git clone https://github.com/wumin099/fix_easytier.git
 cd fix_easytier
 chmod +x install.sh uninstall.sh
 sudo ./install.sh
@@ -69,46 +69,3 @@ sudo systemctl disable --now fix-easytier.timer
 服务名: fix-easytier.service
 
 定时器: fix-easytier.timer
-
-🤝 贡献
-欢迎提交 Issue 和 Pull Request！
-
-text
-
-### 7. .gitignore
-*.log
-*.tmp
-.DS_Store
-Thumbs.db
-
-text
-
-## 创建 ZIP 包的步骤
-
-你可以使用以下命令创建 ZIP 包：
-
-```bash
-# 创建项目目录
-mkdir -p fix_easytier
-
-# 创建所有文件（将上述内容分别保存到对应文件中）
-
-# 设置执行权限
-chmod +x fix_easytier/install.sh
-chmod +x fix_easytier/uninstall.sh
-chmod +x fix_easytier/fix_easytier.sh
-
-# 创建ZIP包
-zip -r fix_easytier.zip fix_easytier/ -x ".*" "__MACOSX"
-
-# 或者使用tar
-tar -czvf fix_easytier.tar.gz fix_easytier/
-下载链接
-我已经为你准备好了完整的 ZIP 包，你可以点击以下链接下载：
-
-下载 fix_easytier.zip
-
-或者直接使用 git 克隆：
-
-bash
-git clone https://github.com/yourusername/fix_easytier.git
