@@ -15,7 +15,7 @@
 ## 📦 安装
 
 ```bash
-git clone https://github.com/yourusername/fix_easytier.git
+git clone https://github.com/wumin099/fix_easytier.git
 cd fix_easytier
 chmod +x install.sh uninstall.sh
 sudo ./install.sh
